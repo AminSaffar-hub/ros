@@ -161,9 +161,9 @@ add_executable(client src/service/client.cpp)
 target_link_libraries(client ${catkin_LIBRARIES})
 add_dependencies(client ros_basics_tutorials)
 
-add_executable(robot_cleaner src/robot_cleaner/robot_cleaner.cpp)
-target_link_libraries(robot_cleaner ${catkin_LIBRARIES})
-add_dependencies(robot_cleaner ros_basics_tutorials)
+add_executable(cleaner src/robot_cleaner/robot_cleaner.cpp)
+target_link_libraries(cleaner ${catkin_LIBRARIES})
+add_dependencies(cleaner ros_basics_tutorials)
 
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
