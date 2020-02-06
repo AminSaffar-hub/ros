@@ -109,5 +109,7 @@ int main(int argc, char **argv)
 	ros::NodeHandle n;
     pose_subscriber = n.subscribe("/turtle1/pose",1000,poseCallback);
     velocity_publisher =  n.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel",10);
-    move(10,10,true);
+    move(0.4,3,true);
+    rotate(0.4,PI/2,false);
+    move(0.4,3,true);
 }
