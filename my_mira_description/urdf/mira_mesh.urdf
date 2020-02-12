@@ -1,5 +1,12 @@
 <?xml version="1.0"?>
+
 <robot name="mira">
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/mira</robotNamespace>
+            <legacyModeNS>true</legacyModeNS>
+        </plugin>
+    </gazebo>
 
     <!--colors-->
     <material name="green">
@@ -25,12 +32,19 @@
 
 
     <!--links-->
+    <link name="dummy">
+    </link>
     <link name="base_link">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.18"/>
+            <inertia ixx="0.0002835" ixy="0.0" ixz="0.0" iyy="0.0002835" iyz="0.0" izz="0.000324"/>
+        </inertial>
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-                <cylinder radius="0.06" length="0.09">
-            <geometry/>
+                <cylinder radius="0.06" length="0.09"/>
+            </geometry>
         </collision>
         <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -40,6 +54,11 @@
         </visual>
     </link>
     <link name="roll_M1_link">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.001" />
+            <inertia ixx="2.70833333333e-08" ixy="0.0" ixz="0.0" iyy="2.70833333333e-08" iyz="0.0" izz="5e-08"/>
+        </inertial>
         <visual>
             <origin rpy="0 0 0 " xyz="0 0 0"/> 
             <geometry>
@@ -49,6 +68,11 @@
         </visual>
     </link>
     <link name="pitch_M2_link">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.001" />
+            <inertia ixx="2.70833333333e-08" ixy="0.0" ixz="0.0" iyy="2.70833333333e-08" iyz="0.0" izz="5e-08"/>
+        </inertial>
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/> 
             <geometry>
@@ -58,6 +82,11 @@
         </visual>
     </link>
     <link name="yaw_M3_link">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.001" />
+            <inertia ixx="2.70833333333e-08" ixy="0.0" ixz="0.0" iyy="2.70833333333e-08" iyz="0.0" izz="5e-08"/>
+        </inertial>
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/> 
             <geometry>
@@ -66,6 +95,18 @@
         </visual>
     </link>
     <link name="head_link">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.02" />
+            <inertia ixx="2.61666666667e-05" ixy="0.0" ixz="0.0" iyy="2.61666666667e-05" iyz="0.0" izz="3.6e-05"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0.015" rpy="0 0 0"/>
+            <geometry>
+                <!-- <cylinder xyz="0 0 0.015" rpy="0 0 0"/> -->
+                <sphere radius="0.06"/>
+            </geometry>
+        </collision>
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/> 
             <geometry>
@@ -74,6 +115,11 @@
         </visual>
     </link>
     <link name="left_eye_link">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.001" />
+            <inertia ixx="9.1875e-09" ixy="0.0" ixz="0.0" iyy="9.1875e-09" iyz="0.0" izz="1.378125e-08"/>
+        </inertial>
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/> 
             <geometry>
@@ -82,6 +128,11 @@
         </visual>
     </link>
     <link name="right_eye_link">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.001" />
+            <inertia ixx="9.1875e-09" ixy="0.0" ixz="0.0" iyy="9.1875e-09" iyz="0.0" izz="1.378125e-08"/>
+        </inertial>
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/> 
             <geometry>
@@ -90,6 +141,11 @@
         </visual>
     </link>
     <link name="camera_link">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.001" />
+            <inertia ixx="9.1875e-09" ixy="0.0" ixz="0.0" iyy="9.1875e-09" iyz="0.0" izz="1.378125e-08"/>
+        </inertial>
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/> 
             <geometry>
@@ -98,19 +154,8 @@
             <material name="white"/>
         </visual>
     </link>
-    
-    
 
-
-
-
-
-
-
-
-
-
-
+   
     <!--joints-->
     <joint name="roll_joint" type="revolute">
         <parent link="base_link"/>
@@ -137,8 +182,7 @@
         <parent link="yaw_M3_link"/>
         <child link="head_link"/>
         <origin xyz="0 0 0" rpy="0 0 0"/>
-    </joint>
-    
+    </joint>   
     <joint name="left_head_joint" type="fixed">
         <parent link="head_link"/>
         <child link="left_eye_link"/>
@@ -154,4 +198,106 @@
         <child link="camera_link"/>
         <origin xyz="0 0.057 0.0255" rpy="0 0 0"/>
     </joint>
+    <joint name="dummy_joint" type="fixed">
+         <parent link="dummy"/>
+         <child link="base_link"/>
+     </joint>
+
+
+    <gazebo reference="roll_M1_link">
+        <kp>1000.0</kp>
+        <kd>10.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+    </gazebo>
+    
+    <gazebo reference="pitch_M2_link">
+        <kp>1000.0</kp>
+        <kd>10.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+    </gazebo>
+
+    <gazebo reference="yaw_M3_link">
+        <kp>1000.0</kp>
+        <kd>10.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+    </gazebo>
+    <transmission name="transmission_roll_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <!--Here you link the joint to the transmission and select the hardware interface, which also only has an effort interface working.-->
+        <joint name="roll_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <!--Here you set a unique name for the actuator and again select the hardware interface. As for the reduction, it's self-explanatory.-->
+        <actuator name="motor_roll_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="transmission_pitch_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <!--Here you link the joint to the transmission and select the hardware interface, which also only has an effort interface working.-->
+        <joint name="roll_pitch_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <!--Here you set a unique name for the actuator and again select the hardware interface. As for the reduction, it's self-explanatory.-->
+        <actuator name="motor_pitch_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <!--Here you define the name of the transmission, which will have to be unique through the URDF file.-->
+    <transmission name="transmission_yaw_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <!--Here you link the joint to the transmission and select the hardware interface, which also only has an effort interface working.-->
+        <joint name="yaw_pitch_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <!--Here you set a unique name for the actuator and again select the hardware interface. As for the reduction, it's self-explanatory.-->
+        <actuator name="motor_yaw_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <gazebo reference="camera_link">
+        <sensor type="camera" name="camera1">
+            <update_rate>15.0</update_rate>
+            <camera name="head">
+                <pose>0 0 0 0 0 1.57</pose>
+                <horizontal_fov>1.3962634</horizontal_fov>
+                <image>
+                    <width>400</width>
+                    <height>400</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.01</near>
+                    <far>100</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <stddev>0.007</stddev>
+                </noise>
+            </camera>
+            
+            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                <alwaysOn>true</alwaysOn>
+                <updateRate>0.0</updateRate>
+                <cameraName>mira/camera1</cameraName>
+                <imageTopicName>image_raw</imageTopicName>
+                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+                <frameName>camera_link</frameName>
+                <hackBaseline>0.07</hackBaseline>
+                <distortionK1>0.0</distortionK1>
+                <distortionK2>0.0</distortionK2>
+                <distortionK3>0.0</distortionK3>
+                <distortionT1>0.0</distortionT1>
+                <distortionT2>0.0</distortionT2>
+            </plugin>
+        </sensor>
+    </gazebo>
+
 </robot>
