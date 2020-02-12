@@ -4,3 +4,5 @@ my_mira_description/.vscode/settings.json
 joint_state_publisher/
 
 my_mira_description/urdf/mira.pdf
+
+gazebo_ros_pkgs/
