@@ -1,7 +1,18 @@
 <?xml version="1.0"?>
 
-<!--links definitions-->
+
+
+
 <robot name="gurdy">
+
+<!--This activates the gazebo control plugin for the gurdy namespace. This namespace will be set in the main spawn launch file.-->
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/gurdy</robotNamespace>
+        </plugin>
+    </gazebo>
+
+<!--links definitions-->
     <link name="base_link">
         <visual>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
@@ -9,6 +20,18 @@
                 <box size="0.01 0.01 0.01"/>
             </geometry>
         </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="0.0"/>
+            <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+        </inertial>
+        
     </link>
     <link name="head_link">
         <visual>
@@ -23,6 +46,11 @@
                <cylinder radius="0.05" length="0.04"/>
             </geometry>
         </collision>
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="0.01"/>
+            <inertia ixx="7.58333e-06" ixy="0.0" ixz="0.0" iyy="7.58333e-06" iyz="0.0" izz="1.25e-05"/>
+        </inertial>
     </link>
     <link name="upperleg_M1_link">_
         <visual>
@@ -34,9 +62,15 @@
         <collision>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
-                <cylinder radius="0.0" length="0.0"/>
+                <cylinder radius="0.0025" length="0.06"/>
             </geometry>
         </collision>
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="0.01"/>
+            <inertia ixx="3.015625e-6" ixy="0.0" ixz="0.0" iyy="3.015625e-6" iyz="0.0" izz="3.125e-8"/>
+        </inertial>
+        
     </link>
     <link name="upperleg_M2_link">_
         <visual>
@@ -45,6 +79,17 @@
                 <mesh filename="package://my_gurdy_description/models/meshes/gurdy_higherleg_v2.dae"/>
             </geometry>
         </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.0025" length="0.06"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="0.01"/>
+            <inertia ixx="3.015625e-6" ixy="0.0" ixz="0.0" iyy="3.015625e-6" iyz="0.0" izz="3.125e-8"/>
+        </inertial>
     </link>
     <link name="upperleg_M3_link">_
         <visual>
@@ -53,6 +98,17 @@
                 <mesh filename="package://my_gurdy_description/models/meshes/gurdy_higherleg_v2.dae"/>
             </geometry>
         </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.0025" length="0.06"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="0.01"/>
+            <inertia ixx="3.015625e-6" ixy="0.0" ixz="0.0" iyy="3.015625e-6" iyz="0.0" izz="3.125e-8"/>
+        </inertial>
     </link>
     <link name="lowerleg_M1_link">
         <visual>
@@ -61,6 +117,17 @@
                 <mesh filename="package://my_gurdy_description/models/meshes/gurdy_lowerleg_v2.dae"/>
             </geometry>
         </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.0025" length="0.06"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="0.01"/>
+            <inertia ixx="9.001875e-06" ixy="0.0" ixz="0.0" iyy="9.001874e-06" iyz="0.0" izz="1.8e-05"/>
+        </inertial>
     </link>
     <link name="lowerleg_M2_link">
         <visual>
@@ -69,6 +136,17 @@
                 <mesh filename="package://my_gurdy_description/models/meshes/gurdy_lowerleg_v2.dae"/>
             </geometry>
         </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.0025" length="0.06"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="0.01"/>
+            <inertia ixx="9.001875e-06" ixy="0.0" ixz="0.0" iyy="9.001874e-06" iyz="0.0" izz="1.8e-05"/>
+        </inertial>
     </link>
     <link name="lowerleg_M3_link">
         <visual>
@@ -77,6 +155,17 @@
                 <mesh filename="package://my_gurdy_description/models/meshes/gurdy_lowerleg_v2.dae"/>
             </geometry>
         </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.0025" length="0.06"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="0.01"/>
+            <inertia ixx="9.001875e-06" ixy="0.0" ixz="0.0" iyy="9.001874e-06" iyz="0.0" izz="1.8e-05"/>
+        </inertial>
     </link>
     <link name="footM1_link">
         <visual>
@@ -88,6 +177,18 @@
                 <color rgba="1.0 0.0 0.0 1.0"/>
             </material>
         </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <sphere radius="0.006"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="0.01"/>
+            <inertia ixx="2.56e-07" ixy="0.0" ixz="0.0" iyy="2.56e-07" iyz="0.0" izz="2.56e-07"/>
+        </inertial>
+        
     </link>
     <link name="footM2_link">
         <visual>
@@ -99,6 +200,17 @@
                 <color rgba="0.0 0.0 1.0 1.0"/>
             </material>
         </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <sphere radius="0.006"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="0.01"/>
+            <inertia ixx="2.56e-07" ixy="0.0" ixz="0.0" iyy="2.56e-07" iyz="0.0" izz="2.56e-07"/>
+        </inertial>
     </link>
     <link name="footM3_link">
         <visual>
@@ -110,9 +222,19 @@
                 <color rgba="240 255 0 1"/>
             </material>
         </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <sphere radius="0.006"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="0.01"/>
+            <inertia ixx="2.56e-07" ixy="0.0" ixz="0.0" iyy="2.56e-07" iyz="0.0" izz="2.56e-07"/>
+        </inertial>
     </link>
-
-    <!--joints-->
+<!--joints-->
     <joint name="base_joint" type="fixed">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <parent link="base_link"/>
@@ -177,5 +299,62 @@
         <child link="footM3_link"/>
     </joint>
 
+<!--joints frictions-->
+    <gazebo reference="head_upperlegM1_joint">
+        <kp>1000.0</kp>
+        <kd>10.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+    </gazebo>
+    <gazebo reference="head_upperlegM2_joint">
+        <kp>1000.0</kp>
+        <kd>10.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+    </gazebo>
+    <gazebo reference="head_upperlegM3_joint">
+        <kp>1000.0</kp>
+        <kd>10.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+    </gazebo>
+    <gazebo reference="upperlegM1_lowerlegM1_joint">
+        <kp>1000.0</kp>
+        <kd>10.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+    </gazebo>
+    <gazebo reference="upperlegM1_lowerlegM2_joint">
+        <kp>1000.0</kp>
+        <kd>10.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+    </gazebo>
+    <gazebo reference="upperlegM1_lowerlegM3_joint">
+        <kp>1000.0</kp>
+        <kd>10.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+    </gazebo>
+    <gazebo reference="lowerlegM1_footM1_link">
+        <kp>1000.0</kp>
+        <kd>10.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+    </gazebo>
+    <gazebo reference="lowerlegM2_footM2_link">
+        <kp>1000.0</kp>
+        <kd>10.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+    </gazebo>
+    <gazebo reference="lowerlegM3_footM3_link">
+        <kp>1000.0</kp>
+        <kd>10.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+    </gazebo>
+
+<!--transmissions-->
 
 </robot>
