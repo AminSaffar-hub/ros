@@ -1,0 +1,12 @@
+
+<launch>
+    <rosparam file="$(find my_gurdy_description)/config/gurdy_control.yaml" command="load"/>
+    <!--load the controllers-->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/gurdy" args="head_upperlegM1_position_controller head_upperlegM2_position_controller head_upperlegM3_position_controller upperlegM1_lowerlegM1_position_controller upperlegM2_lowerlegM2_position_controller upperlegM3_lowerlegM3_position_controller joint_state_controller --shutdown-timeout 3"/>
+    <!--convert joint states to TF transforms for rviz ,etc-->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+        <remap from="/joint_states" to ="/gurdy/joint_states"/>
+    </node>
+</launch>

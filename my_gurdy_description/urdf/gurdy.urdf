@@ -246,54 +246,54 @@
         <parent link="head_link"/>
         <child link="upperleg_M1_link"/>
         <axis xyz="0.0 1.0 0.0"/>
-        <limit lower="-1.5707" upper="0.0" effort="0.0" velocity="0.005"/>
+        <limit lower="-1.5707" upper="0.0" effort="1.0" velocity="0.005"/>
     </joint>
     <joint name="head_upperlegM2_joint" type="revolute">
         <origin xyz="0.02165 -0.0125 -0.008" rpy="3.14159 0 2.61799"/>
         <parent link="head_link"/>
         <child link="upperleg_M2_link"/>
         <axis xyz="0.0 1.0 0.0"/>
-        <limit lower="-1.5707" upper="0.0" effort="0.0" velocity="0.005"/>
+        <limit lower="-1.5707" upper="0.0" effort="1.0" velocity="0.005"/>
     </joint>
     <joint name="head_upperlegM3_joint" type="revolute">
         <origin xyz="0 0.025 -0.008" rpy="3.14159 0 -1.5708"/>
         <parent link="head_link"/>
         <child link="upperleg_M3_link"/>
         <axis xyz="0.0 1.0 0.0"/>
-        <limit lower="-1.5707" upper="0.0" effort="0.0" velocity="0.005"/>
+        <limit lower="-1.5707" upper="0.0" effort="1.0" velocity="0.005"/>
     </joint>
     <joint name="upperlegM1_lowerlegM1_joint" type="revolute">
         <origin xyz="0 0.0095 0.06" rpy="0.0 0.0 3.14159"/>
         <parent link="upperleg_M1_link"/>
         <child link="lowerleg_M1_link"/>
         <axis xyz="0.0 1.0 0.0"/>
-        <limit lower="-3" upper="1.5707" effort="0.0" velocity="0.005"/>
+        <limit lower="-3" upper="1.5707" effort="1.0" velocity="0.005"/>
     </joint>
     <joint name="upperlegM2_lowerlegM2_joint" type="revolute">
         <origin xyz="0 0.0095 0.06" rpy="0.0 0.0 3.14159"/>
         <parent link="upperleg_M2_link"/>
         <child link="lowerleg_M2_link"/>
         <axis xyz="0.0 1.0 0.0"/>
-        <limit lower="-3" upper="1.5707" effort="0.0" velocity="0.005"/>
+        <limit lower="-3" upper="1.5707" effort="1.0" velocity="0.005"/>
     </joint>
     <joint name="upperlegM3_lowerlegM3_joint" type="revolute">
         <origin xyz="0 0.0095 0.06" rpy="0.0 0.0 3.14159"/>
         <parent link="upperleg_M3_link"/>
         <child link="lowerleg_M3_link"/>
         <axis xyz="0.0 1.0 0.0"/>
-        <limit lower="-3" upper="1.5707" effort="0.0" velocity="0.005"/>
+        <limit lower="-3" upper="1.5707" effort="1.0" velocity="0.005"/>
     </joint>
     <joint name="lowerlegM1_footM1_link" type="fixed">
         <origin xyz="0.0 0.0 0.06" rpy="0.0 0.0 0.0"/>
         <parent link="lowerleg_M1_link"/>
         <child link="footM1_link"/>
     </joint>
-     <joint name="lowerlegM2_footM2_link" type="fixed">
+    <joint name="lowerlegM2_footM2_link" type="fixed">
         <origin xyz="0.0 0.0 0.06" rpy="0.0 0.0 0.0"/>
         <parent link="lowerleg_M2_link"/>
         <child link="footM2_link"/>
     </joint>
-     <joint name="lowerlegM3_footM3_link" type="fixed">
+    <joint name="lowerlegM3_footM3_link" type="fixed">
         <origin xyz="0.0 0.0 0.06" rpy="0.0 0.0 0.0"/>
         <parent link="lowerleg_M3_link"/>
         <child link="footM3_link"/>
@@ -354,7 +354,79 @@
         <mu1>10.0</mu1>
         <mu2>10.0</mu2>
     </gazebo>
-
 <!--transmissions-->
-
+    <transmission name="transmission_head_upperlegM1_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="head_upperlegM1_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor_head_upperlegM1_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="transmission_head_upperlegM2_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="head_upperlegM2_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor_head_upperlegM2_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="transmission_head_upperlegM3_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="head_upperlegM3_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor_head_upperlegM3_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="transmission_upperlegM1_lowerlegM1_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="upperlegM1_lowerlegM1_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor_upperlegM1_lowerlegM1_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="transmission_upperlegM2_lowerlegM2_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="upperlegM2_lowerlegM2_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor_upperlegM2_lowerlegM2_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="transmission_upperlegM3_lowerlegM3_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="upperlegM3_lowerlegM3_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor_upperlegM3_lowerlegM3_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+<!--imu-->
+    <gazebo>
+        <plugin name="gazebo_ros_imu_controller" filename="libgazebo_ros_imu.so">
+            <robotNamespace>/gurdy</robotNamespace>
+            <topicName>imu/data</topicName>
+            <serviceName>imu/service</serviceName>
+            <bodyName>base_link</bodyName>
+            <gaussianNoise>0</gaussianNoise>
+            <rpyOffsets>0 0 0</rpyOffsets>
+            <updateRate>10.0</updateRate>
+            <alwaysOn>true</alwaysOn>
+            <gaussianNoise>0</gaussianNoise>
+        </plugin>
+    </gazebo>
 </robot>
