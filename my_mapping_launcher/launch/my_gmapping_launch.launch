@@ -1,0 +1,7 @@
+<launch>
+  <arg name="odom_frame"  default="odom"/>
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+    <rosparam file ="$(find my_mapping_launcher)/parpam/gmapping_param.yaml" command ="load"/>
+    <remap from="scan" to="$(arg scan_topic)"/>
+  </node>
+</launch>
