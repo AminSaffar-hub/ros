@@ -1,0 +1,11 @@
+<launch>
+
+  <arg name="scan_topic"      default="kobuki/laser/scan"/> 
+ 
+
+  <node pkg="amcl" type="amcl" name="amcl">
+    <rosparam file="$(find my_amcl)/param/amcl_param.yaml"/>
+    
+    <remap from="scan"                      to="$(arg scan_topic)"/>
+  </node>
+</launch>
